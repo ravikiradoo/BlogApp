@@ -20,6 +20,29 @@ alert(data)
 return false;
 
 });
+$("#lform").submit(function(){
+
+var data=$("#lform").serialize();
+alert(data)
+$.ajax({
+url: "/login",
+type: "POST",
+data: data,
+
+success: function(data)
+{
+
+alert(data)
+
+}
+});
+
+
+return false;
+
+});
+
+
 });
 
 
