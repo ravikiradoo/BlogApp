@@ -2,6 +2,7 @@ import pymongo
 from pymongo import MongoClient
 import bcrypt
 
+
 class RegisterModel:
 
     def __init__(self):

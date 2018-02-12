@@ -1,6 +1,6 @@
 import web
 from models import Register
-
+web.config.debug=False
 
 urls=[
     '/','index',
@@ -11,8 +11,14 @@ urls=[
 
 
 ]
-render = web.template.render("views/Templates",base="MainLayout")
+
 app = web.application(urls,globals())
+session=web.session.Session(app,web.session.DiskStore("session"),initializer={"user":"none"})
+session_data=session._initializer
+
+render = web.template.render("views/Templates",base="MainLayout",globals={'session':session_data,'Current_user':session_data['user']})
+
+
 class index:
     def GET(self):
         return render.Home()
