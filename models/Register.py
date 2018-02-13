@@ -11,7 +11,7 @@ class RegisterModel:
         self.Users=self.db.users
     def insert_user(self,data):
         hash = bcrypt.hashpw(data.password.encode('utf8'), bcrypt.gensalt())
-        id=self.Users.insert({"Email":data.email,"Password":hash})
+        id=self.Users.insert({"UserName":data.username,"Email":data.email,"Password":hash})
         print(id)
 
 

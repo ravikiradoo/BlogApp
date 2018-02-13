@@ -2,8 +2,19 @@
 
 <body>
 $if session['user']==None:
-    <h1>Please Login First</h1>
+   <div></div>
 $else:
-    <h1>Welcome $session['user']['Email']  </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <ul style=" list-style-type: none;">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">My Posts</a></li>
+                    <li><a href="#">My Following </a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
 
 </body>
