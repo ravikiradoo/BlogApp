@@ -1,6 +1,9 @@
 
 
 <body>
+$if session['user']==None:
+    <h1>Please Login First</h1>
+$else:
+    <h1>Welcome $session['user']['Email']  </h1>
 
-<h1> </h1>
 </body>

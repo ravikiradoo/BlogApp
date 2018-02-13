@@ -8,12 +8,13 @@ urls=[
     '/PostData','Post',
     '/Login','Login',
     '/login','PostLogin',
+    '/Logout','Logout'
 
 
 ]
 
 app = web.application(urls,globals())
-session=web.session.Session(app,web.session.DiskStore("session"),initializer={"user":"none"})
+session=web.session.Session(app,web.session.DiskStore("session"),initializer={"user":None})
 session_data=session._initializer
 
 render = web.template.render("views/Templates",base="MainLayout",globals={'session':session_data,'Current_user':session_data['user']})
@@ -41,7 +42,17 @@ class PostLogin:
         data=web.input()
         log_model=Register.LoginModel()
         message=log_model.login_user(data)
-        return message
+        if message:
+            session_data['user']=message
+            return message
+        else:
+            return message
+class Logout:
+    def GET(self):
+        session['user']=None
+        session_data['user']=None
+        session.kill()
+        return "pass"
 
 if __name__=="__main__":
     app.run()

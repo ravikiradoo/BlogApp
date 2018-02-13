@@ -31,7 +31,9 @@ class LoginModel:
        if user:
            if bcrypt.checkpw(data.password.encode('utf8'), user['Password'].encode('utf8')):
                print("User Mathced")
-               return "User Matched"
+               return user
            else:
                print("User not Mathced")
-               return "User could not found"
+               return "false"
+       else:
+           return False

@@ -23,7 +23,6 @@ return false;
 $("#lform").submit(function(){
 
 var data=$("#lform").serialize();
-alert(data)
 $.ajax({
 url: "/login",
 type: "POST",
@@ -32,7 +31,12 @@ data: data,
 success: function(data)
 {
 
-alert(data)
+if(data=="false")
+ alert("User could not matched")
+else
+   {alert("User matched")
+
+    window.location.href="/"}
 
 }
 });
@@ -40,6 +44,25 @@ alert(data)
 
 return false;
 
+});
+$("#logout").click(function(){
+
+$.ajax({
+url:"/Logout",
+type:"GET",
+success:function(data)
+{
+if(data=='pass')
+{
+window.location.href="/"
+}
+else
+{
+alert("somthing wnet wrong")}
+}
+
+})
+return false;
 });
 
 

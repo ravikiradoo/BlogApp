@@ -35,11 +35,20 @@ display:block;}
             <li><a  href="/">Profile</a></li>
             <li><a class="waves-effect" href="/">Settings</a></li>
         </ul>
-    <div class="pull-right">
+
+    $if session['user']==None:
+        <div class="pull-right">
         <a href="/register" class="btn btn-raised btn-default waves-effect">Register</a>
 
         <a href="/Login" class="btn btn-raised btn-default waves-effect">Login</a>
-    </div>
+        </div>
+    $else:
+        <div class="pull-right">
+
+        <a href="/Logout" id="logout" class="btn btn-raised btn-default waves-effect">Logout</a>
+        </div>
+
+
 
 </div>
 $:page
