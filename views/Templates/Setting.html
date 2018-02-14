@@ -1,0 +1,30 @@
+$def with(data)
+$if session['user']==None:
+    <div></div>
+$else:
+    <div class="col-md-3"></div>
+    <div class="col-md-6" id="spage" style="display:block">
+
+     <form action="/" id="sform" method="post">
+
+    <label for="username">User Name</label>
+    <input type="text" class=" set" id="username" name="username" value= $session['user']['UserName']>
+
+
+    <label for="about">About</label>
+             <input class="set " id="about" name="about" value= $session['user']['About']>
+
+
+    <label for="hobbies">Hobbies</label>
+              <input class="set " id="hobbies" name="hobbies" value= $session['user']['Hobbies']>
+
+        <label for="bday">Birthday</label>
+
+             <input class="set " id="bday" name="bday" value= $session['user']['Birthday']>
+
+
+
+    <button type="submit" class="btn btn-default">Save</button>
+    </form>
+
+    </div>

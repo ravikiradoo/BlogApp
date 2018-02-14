@@ -93,7 +93,25 @@ alert("somthing wnet wrong")}
 return false;
 });
 
+$("#sform").submit(function(){
+var form=$("#sform").serialize();
 
+$.ajax({
+url:"/update",
+type:"POST",
+data:form,
+success:function(data)
+{
+if(data=="pass")
+{
+alert("Profile updated successfully");
+}
+}
+
+
+});
+return false
+});
 });
 
 

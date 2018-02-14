@@ -5,4 +5,4 @@ $if session['user']==None:
 $else:
     <h1>Dashboard</h1>
     $for post in posts:
-        <div class="col-md-4 postlist"><p>$post["Post"]</p></div>
+        <div class="col-md-4 postlist"><h5>$post["Date"]</h5><p>$post["Post"]</p></div>

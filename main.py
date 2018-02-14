@@ -1,16 +1,20 @@
 import web
+import humanize
+import datetime
 from models import Register
 web.config.debug=False
 
 urls=[
     '/','index',
     '/register','register',
-    '/PostData','Post',
+    '/PostData','Save',
     '/Login','Login',
     '/login','PostLogin',
     '/Logout','Logout',
     '/post', 'Post',
     '/HomeFeed','HomeFeed',
+    '/Setting','Setting',
+    '/update','Update',
 
 
 ]
@@ -29,7 +33,7 @@ class register:
     def GET(self):
         return render.Register()
 
-class Post:
+class Save:
     def POST(self):
         data=web.input()
         reg_model=Register.RegisterModel()
@@ -55,6 +59,7 @@ class Logout:
         session_data['user']=None
         session.kill()
         return "pass"
+
 class Post:
     def POST(self):
         data=web.input()
@@ -80,6 +85,17 @@ class HomeFeed:
             data=[]
             return render.HomeFeed(data)
 
+class Setting:
+    def GET(self):
+        data={}
+        return render.Setting(data)
 
+class Update:
+    def POST(self):
+        data=web.input()
+        data.email=session_data['user']['Email']
+        u_model=Register.RegisterModel()
+        u_model.update_user(data)
+        return "pass"
 if __name__=="__main__":
     app.run()
