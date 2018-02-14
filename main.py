@@ -8,7 +8,9 @@ urls=[
     '/PostData','Post',
     '/Login','Login',
     '/login','PostLogin',
-    '/Logout','Logout'
+    '/Logout','Logout',
+    '/post', 'Post',
+    '/HomeFeed','HomeFeed',
 
 
 ]
@@ -53,6 +55,31 @@ class Logout:
         session_data['user']=None
         session.kill()
         return "pass"
+class Post:
+    def POST(self):
+        data=web.input()
+        data.email=session_data['user']['Email']
+        p_model=Register.PostModel()
+        p_model.AddPost(data)
+        return "pass"
+
+class HomeFeed:
+    def GET(self):
+        p_model=Register.PostModel()
+        print(session_data['user'])
+        print("hi")
+        if session_data['user']!=None:
+            email=session_data['user']['Email']
+            data=[]
+            p_model=Register.PostModel()
+            data=p_model.Getpost(email)
+
+
+            return render.HomeFeed(data)
+        else:
+            data=[]
+            return render.HomeFeed(data)
+
 
 if __name__=="__main__":
     app.run()

@@ -37,3 +37,19 @@ class LoginModel:
                return "false"
        else:
            return False
+
+class PostModel:
+    def __init__(self):
+        self.client=MongoClient()
+        self.db=self.client.Blogapp
+        self.Posts=self.db.posts
+
+    def AddPost(self,data):
+        self.Posts.insert({"Email":data.email,"Post":data.post})
+
+    def Getpost(self,data):
+        all_posts=self.Posts.find({"Email":data})
+        return  all_posts
+
+
+

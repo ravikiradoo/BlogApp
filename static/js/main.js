@@ -45,6 +45,34 @@ else
 return false;
 
 });
+$("#Pform").submit(function(){
+
+var data=$("#Pform").serialize();
+$.ajax({
+url: "/post",
+type: "POST",
+data: data,
+
+success: function(data)
+{
+
+if(data=="pass")
+ {alert("Post submitted successfully")
+     window.location.href="/"}
+else
+   {alert("Something went wrong")
+
+    window.location.href="/"}
+
+}
+});
+
+
+return false;
+
+});
+
+
 $("#logout").click(function(){
 
 $.ajax({

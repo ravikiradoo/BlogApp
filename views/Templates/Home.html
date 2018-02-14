@@ -1,20 +1,13 @@
 
-
-<body>
 $if session['user']==None:
    <div></div>
 $else:
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <ul style=" list-style-type: none;">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">My Posts</a></li>
-                    <li><a href="#">My Following </a></li>
+   <div class="col-md-2"></div>
+    <div class="col-md-8" >
+        <form id="Pform">
+            <textarea id="post" name="post" method="post">Add your text here </textarea>
+       <center><input type="submit" class="btn btn-info" value="Post" style="margin:10px;"></center>
+        </form></div>
 
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <div class="col-md-2"></div>
 </body>

@@ -1,0 +1,8 @@
+$def with(posts)
+
+$if session['user']==None:
+   <div></div>
+$else:
+    <h1>Dashboard</h1>
+    $for post in posts:
+        <div class="col-md-4 postlist"><p>$post["Post"]</p></div>
