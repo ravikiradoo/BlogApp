@@ -112,6 +112,55 @@ alert("Profile updated successfully");
 });
 return false
 });
+
+$(".commentform").submit(function(){
+var form = $(this).serialize();
+
+$.ajax({
+url:"/comment",
+type:"POST",
+data:form,
+success:function(data)
+{
+if(data=="pass")
+{
+alert("Comment added successfully");}
+
+else
+{alert("Comment added successfully");}
+}
+});
+return false
+
+});
+
+
+
+$(".dform").submit(function(){
+
+var form = $(this).serialize();
+alert(form);
+$.ajax({
+
+url:"/deletePost",
+type:"POST",
+data:form,
+success:function(data){
+if(data=="pass")
+{
+alert("Deleted Successfully");
+window.location.href="/HomeFeed"
+}
+else
+{
+alert("something went wrong");
+}
+}
+
+});
+return false;
+});
+
 });
 
 

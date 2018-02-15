@@ -5,4 +5,27 @@ $if session['user']==None:
 $else:
     <h1>Dashboard</h1>
     $for post in posts:
-        <div class="col-md-4 postlist"><h5>$post["Date"]</h5><p>$post["Post"]</p></div>
+        <div class="col-md-4 postlist">
+            <form method="post" class="dform"><input type="hidden" value="$post['_id']" name="id">
+                <input type="image" value="submit" src="static/delete.svg" style="position:absolute;right:0;top:0;">
+            </form>
+
+
+
+            <h5>$post["Date"]</h5><p>$post["Post"]</p>
+            <p>
+                $for c in post["comments"]:
+                        <div id="Cbox">
+                        <h4>$c["user"] $c["Time"]</h4>
+                        <h5>$c["comment"]</h5>
+                         </div>
+
+
+
+            </p>
+        <form class="commentform" method="post">
+            <input type="hidden" name="postid" value=$post['_id'] style="display:none">
+            <textarea name="comment" class="set" placeholder="Write your comment "></textarea>
+            <input type="submit" class="btn btn-info" value="Comment">
+        </form>
+        </div>

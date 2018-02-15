@@ -1,8 +1,10 @@
 import pymongo
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 import bcrypt
 import datetime
 import humanize
+
 
 class RegisterModel:
 
@@ -47,10 +49,26 @@ class PostModel:
         self.client=MongoClient()
         self.db=self.client.Blogapp
         self.Posts=self.db.posts
+        self.Comments=self.db.comments
 
     def AddPost(self,data):
         time=(datetime.datetime.now())
         self.Posts.insert({"Email":data.email,"Post":data.post,"Date":time})
+
+    def insertComment(self,data):
+        time=datetime.datetime.now()
+        data.Time=time
+        self.Comments.insert(data)
+        return "pass"
+
+    def DeletePost(self,data):
+        print(data.id)
+        result=self.Posts.delete_one({"_id":ObjectId(data.id)})
+        print(result)
+        return result
+
+
+
 
 
     def Getpost(self,data):
@@ -58,6 +76,17 @@ class PostModel:
         post_list=[]
         for post in all_posts:
             post["Date"]= humanize.naturaltime(datetime.datetime.now()-post["Date"])
+            comments=[]
+
+            all_comments=self.Comments.find({"postid":str(post["_id"])})
+
+            for c in all_comments:
+                print(c)
+                c["Time"]=humanize.naturaltime(datetime.datetime.now()-c["Time"])
+                comments.append(c)
+
+
+            post["comments"]=comments
             post_list.append(post)
         return  post_list
 

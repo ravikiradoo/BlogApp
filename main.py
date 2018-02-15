@@ -15,7 +15,8 @@ urls=[
     '/HomeFeed','HomeFeed',
     '/Setting','Setting',
     '/update','Update',
-
+    '/comment','Comment',
+    '/deletePost','DeletePost'
 
 ]
 
@@ -97,5 +98,32 @@ class Update:
         u_model=Register.RegisterModel()
         u_model.update_user(data)
         return "pass"
+
+class Comment:
+    def POST(self):
+        data=web.input();
+        data.email=session_data['user']['Email']
+        data.user=session_data['user']['UserName']
+        c_model=Register.PostModel()
+        result=c_model.insertComment(data)
+
+        if result:
+            return "pass"
+        else:
+            return "fail"
+
+
+class DeletePost:
+    def POST(self):
+        data=web.input()
+        model=Register.PostModel()
+        result=model.DeletePost(data)
+        if result:
+            return "pass"
+        else:
+            return "fail"
+
+
+
 if __name__=="__main__":
     app.run()
