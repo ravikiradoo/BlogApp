@@ -1,0 +1,21 @@
+$def with(data)
+
+$if session['user']!=None:
+    $for user in data:
+        <div class="col-md-3"></div>
+        <div class="col-md-6" >
+
+            <div class="row profileblock">
+                <div class="col-md-3">
+                 <form class="vp" method="post" action="/Profile">
+                        <input type="hidden" style="display:none" value=$user["id"] name="id">
+                         <input type="image" value="submit" src=$user['profile'] style="position:absolute;right:0;top:0;" width="70px" height="70px">
+                    </form>
+                </div>
+            <div> class="col-md-2"><h3>$user["username"]</h3></div>
+
+            </div>
+            </div>
+
+
+        <div class="col-md-3"></div>

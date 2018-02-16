@@ -14,7 +14,7 @@ class RegisterModel:
         self.Users=self.db.users
     def insert_user(self,data):
         hash = bcrypt.hashpw(data.password.encode('utf8'), bcrypt.gensalt())
-        id=self.Users.insert({"UserName":data.username,"Email":data.email,"Password":hash,"About":"","Hobbies":"","Birthday":""})
+        id=self.Users.insert({"UserName":data.username,"Email":data.email,"Password":hash,"About":"","Hobbies":"","Birthday":"","ProfilePic":""})
         print(id)
 
     def update_user(self,data):
@@ -22,6 +22,36 @@ class RegisterModel:
 
     def upload_pic(self,data):
         self.Users.update_one({"Email":data["email"]},{'$set':{"ProfilePic":data["imagepath"]}})
+
+    def getUser(self):
+        all_user=self.Users.find({})
+        user_list=[]
+
+        for u in all_user:
+            user = {}
+            user["id"]=u["_id"]
+            user["username"]=u["UserName"]
+            user["profile"]=u["ProfilePic"]
+            user_list.append(user)
+
+        return user_list
+
+    def getProfile(self,data):
+        u=self.Users.find_one({"_id":ObjectId(data)})
+        user={}
+
+
+
+        user["username"]=u["UserName"]
+        user["profile"]=u["ProfilePic"]
+        user["about"]=u["About"]
+        user["hobbies"]=u["Hobbies"]
+        user["bday"]=u["Birthday"]
+
+
+        return user
+
+
 class LoginModel:
 
 

@@ -126,6 +126,22 @@ $var back: static/home.jpeg
  border-radius: 50%;
 
         }
+
+        #profilepage
+        {
+
+        padding:50px;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+
+.profileblock
+{
+width:100%;
+padding:20px;
+margin:20px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
     </style>
 
 </head>
@@ -140,22 +156,24 @@ $var back: static/home.jpeg
             <center>
         <ul class="nav navbar-nav">
             <li class="nlink"   ><a  href="/HomeFeed" id="hf">Home Feed</a></li>
-            <li class="nlink" ><a    href="">Discover</a></li>
-           
+            <li class="nlink" ><a    href="/Discover">Discover</a></li>
+
             <li class="nlink"><a   class="waves-effect" href="/Setting">Settings</a></li>
         </ul>
             </center>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-2" style="align-item:center;">
-
+        <div class="col-md-2"></div>
+        <div class="col-md-3" style="align-item:center;">
+         <div class="pull-right">
         $if session['user']==None:
+
+
         <a href="/register" class="btn navb">Register</a>
 
         <a href="/Login"  class="btn navb">Login</a>
 
     $else:
-        <div class="pull-right">
+
 
         Welcome $session['user']['UserName']
             <center>

@@ -19,7 +19,8 @@ urls=[
     '/comment','Comment',
     '/deletePost','DeletePost',
     '/Upload','UploadImage',
-    '/Profile','Profile'
+    '/Profile','Profile',
+    '/Discover','Discover',
 
 ]
 
@@ -154,7 +155,18 @@ class UploadImage:
 
         return render.Setting(data)
 
+class Discover:
+    def GET(self):
+        model=Register.RegisterModel()
+        data=model.getUser()
+        return render.Discover(data)
 
+class Profile:
+    def POST(self):
+        data=web.input()
+        model=Register.RegisterModel()
+        user= model.getProfile(data.id)
+        return render.Profile(user)
 
 
 
