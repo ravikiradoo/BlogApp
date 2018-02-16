@@ -2,6 +2,7 @@ import web
 import humanize
 import datetime
 from models import Register
+import os
 web.config.debug=False
 
 urls=[
@@ -16,7 +17,9 @@ urls=[
     '/Setting','Setting',
     '/update','Update',
     '/comment','Comment',
-    '/deletePost','DeletePost'
+    '/deletePost','DeletePost',
+    '/Upload','UploadImage',
+    '/Profile','Profile'
 
 ]
 
@@ -122,6 +125,41 @@ class DeletePost:
             return "pass"
         else:
             return "fail"
+
+class UploadImage:
+    def POST(self):
+        file=web.input(pic={})
+        cwd=os.getcwd()
+        dir="static\uploads\\"+(session_data["user"]["Email"]).split("@")[0]
+        file_dir=os.path.join(cwd,dir)
+        if os.path.exists(file_dir):
+            for f in os.listdir(file_dir):
+                os.remove(file_dir+"\\"+f)
+
+        if not os.path.exists(file_dir):
+            os.makedirs(file_dir)
+        if "pic" in file:
+             filepath=file["pic"].filename
+
+        f=open(file_dir+"\\"+filepath,"wb")
+        f.write(file['pic'].file.read())
+        f.close()
+        model=Register.RegisterModel()
+        data={}
+        data["email"]=session_data["user"]["Email"]
+        data["imagepath"]=dir+"\\"+filepath
+        model.upload_pic(data)
+        data={}
+        data["message"]="Profile Updated Successfully"
+
+        return render.Setting(data)
+
+
+
+
+
+
+
 
 
 

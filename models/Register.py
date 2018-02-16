@@ -20,7 +20,8 @@ class RegisterModel:
     def update_user(self,data):
         self.Users.update_one({"Email":data.email},{'$set':{"UserName":data.username,"About":data.about,"Hobbies":data.hobbies,"Birthday":data.bday}})
 
-
+    def upload_pic(self,data):
+        self.Users.update_one({"Email":data["email"]},{'$set':{"ProfilePic":data["imagepath"]}})
 class LoginModel:
 
 

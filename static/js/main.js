@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+function MessageBox(message)
+{
+alert(message);
+}
+
 $("#form").submit(function(){
 
 var data=$("#form").serialize();
@@ -160,6 +166,8 @@ alert("something went wrong");
 });
 return false;
 });
+
+
 
 });
 

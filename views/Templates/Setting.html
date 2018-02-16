@@ -3,8 +3,7 @@ $if session['user']==None:
     <div></div>
 $else:
     <div class="col-md-3"></div>
-    <div class="col-md-6" id="spage" style="display:block">
-
+    <div class="col-md-5" id="spage" style="display:block"><img src=$session['user']['ProfilePic'] id="pp" >
      <form action="/" id="sform" method="post">
 
     <label for="username">User Name</label>
@@ -28,3 +27,15 @@ $else:
     </form>
 
     </div>
+
+    <div class="col-md-4" id="impage">  <center> Update Profile Picture<form enctype="multipart/form-data" method="post" id="imform" action="/Upload">
+    <input type="file" name="pic"><input type="submit" class="btn btn-info" value="Save"></form></center></div>
+
+
+
+
+
+
+
+
+
